@@ -1,0 +1,19 @@
+---
+title: git tips
+layout: post
+---
+
+Some commands that I use occasionally, but almost always have to re-google.
+
+### Merge Conflicts
+For the longest time, I would look at a merge conflict and be so confused about what code was mine and what was "theirs" (`local` and `remote`). Clarity came when I finally realized the nuance of `merge` vs `rebase`. 
+- In a `git merge`, my code is `local` because I'm bringing their code into my branch, so theirs is `remote`.
+- In a `git rebase`, my code is `remote` because I've removed my code from my branch and put theirs on it. Then my code is brought back into my branch as `remote` and applied to the `local` changes.
+
+### Rapid Commits
+I often just work on experiments and don't necessarily want to have a bunch of separate commits, but I do want to commit often. I created the following `git` alias to make this easy:
+{% highlight git %}
+wip = commit -a --amend --no-edit
+{% endhighlight %}
+This command will stage my files, add them to the previous commit and not prompt me to edit the commit message.
+So all I have to do is start the initial commit and then use `git wip` for all subsequent commits. I usually set the commit message to `WIP`.
